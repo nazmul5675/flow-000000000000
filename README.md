@@ -315,7 +315,4 @@ GitHub: [nazmul5675](https://github.com/nazmul5675)
 
 ---
 
-## License
-
-This project is currently shared for portfolio / assessment / demonstration purposes.
 
