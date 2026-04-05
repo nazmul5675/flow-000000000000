@@ -9,6 +9,7 @@ import CustomCursor from './components/common/CustomCursor';
 
 // Sections
 import HeroSection from './components/sections/HeroSection';
+import BonusInteractiveSection from './components/sections/BonusInteractiveSection';
 import IntroApproachSection from './components/sections/IntroApproachSection';
 import MarqueeStatement from './components/sections/MarqueeStatement';
 import PortfolioSection from './components/sections/PortfolioSection';
@@ -63,6 +64,7 @@ function App() {
       
       <main>
         <HeroSection id="hero" />
+        <BonusInteractiveSection id="interactive" />
         <IntroApproachSection id="approach" />
         <MarqueeStatement text="creativity, technology, and strategy See how " />
         <PortfolioSection id="portfolio" />

@@ -53,7 +53,7 @@ const AwardsSection = ({ id }) => {
            <div className="lg:col-span-8">
               <div className="space-y-0">
                  {awards.map((award, i) => (
-                    <div key={i} className="grid grid-cols-12 gap-4 py-10 border-b border-black/5 group hover:bg-black/[0.01] transition-colors -mx-4 px-4 items-center">
+                    <div key={i} className="grid grid-cols-12 gap-4 py-10 border-b border-black/5 group hover:bg-black/[0.01] -mx-4 px-4 items-center cursor-pointer hover:scale-[0.97] transition-all duration-[400ms] ease-[cubic-bezier(0.25,0.1,0.25,1)] origin-center">
                        <div className="col-span-6 md:col-span-7">
                           <h3 className="text-xs md:text-sm font-bold uppercase tracking-widest text-foreground">{award.title}</h3>
                        </div>

@@ -64,7 +64,7 @@ const PortfolioSection = ({ id }) => {
 const ProjectCard = ({ project, isLarge }) => (
   <div className="group cursor-pointer bg-white rounded-[2rem] overflow-hidden shadow-sm flex flex-col border border-black/5 hover:border-black/10 transition-colors">
     {/* Image Container */}
-    <div className={`relative w-full ${isLarge ? 'aspect-[2.2/1] lg:aspect-[2.5/1]' : 'aspect-[1.3/1] lg:aspect-[1.45/1]'}`}>
+    <div className={`relative w-full flex-1 ${isLarge ? 'aspect-[2.2/1] lg:aspect-[2.5/1]' : 'aspect-[1.3/1] lg:aspect-[1.45/1]'}`}>
       <img 
         src={project.image} 
         alt={project.title} 

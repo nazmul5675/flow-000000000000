@@ -63,5 +63,6 @@ export const assets = {
     birdMask: "/assets/logos/bird-particle-mask.png",
     legacy1: "/assets/logos/legacy-placeholder-logo-01.png",
     legacy2: "/assets/logos/legacy-placeholder-logo-02.png",
+    sandClockFlokaMask: "/assets/logos/sand-clock-floka-mask.png"
   },
 };

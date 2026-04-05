@@ -6,8 +6,6 @@ const CustomCursor = () => {
   const targetRef = useRef(null);
 
   useEffect(() => {
-    // Ensure native cursor is hidden
-    document.body.style.cursor = 'none';
     
     const cursor = cursorRef.current;
     const target = targetRef.current;
@@ -27,17 +25,20 @@ const CustomCursor = () => {
       xToTarget(clientX);
       yToTarget(clientY);
 
-      const inBlack = e.target.closest('.bg-black, .bg-\\[\\#000\\]');
+      // Check the nearest background container — if a lighter bg (white, gray, etc.) is closer than
+      // a black bg, the user is visually on a light area even if it's nested inside a black section.
+      const nearestBg = e.target.closest('.bg-black, .bg-white, .bg-\\[\\#f4f4f4\\], .bg-\\[\\#f6f6f6\\], .bg-background, .bg-foreground');
+      const inBlack = nearestBg && (nearestBg.classList.contains('bg-black') || nearestBg.classList.contains('bg-foreground'));
       if (inBlack && !wasInBlack) {
          wasInBlack = true;
          document.body.classList.add('show-native');
-         gsap.to(cursor, { opacity: 0, duration: 0.1, overwrite: "auto" });
-         gsap.to(target, { opacity: 0, duration: 0.1, overwrite: "auto" });
+         gsap.to(cursor, { opacity: 0, scale: 0.5, duration: 0.4, ease: "power2.inOut", overwrite: "auto" });
+         gsap.to(target, { opacity: 0, scale: 0.5, duration: 0.4, ease: "power2.inOut", overwrite: "auto" });
       } else if (!inBlack && wasInBlack) {
          wasInBlack = false;
          document.body.classList.remove('show-native');
-         gsap.to(cursor, { opacity: isHovering ? 0 : 1, duration: 0.2, overwrite: "auto" });
-         gsap.to(target, { opacity: isHovering ? 1 : 0.4, duration: 0.2, overwrite: "auto" });
+         gsap.to(cursor, { opacity: isHovering ? 0 : 1, scale: 1, duration: 0.5, ease: "power2.out", overwrite: "auto" });
+         gsap.to(target, { opacity: isHovering ? 1 : 0.4, scale: 1, duration: 0.5, ease: "power2.out", overwrite: "auto" });
       }
     };
 
@@ -77,6 +78,7 @@ const CustomCursor = () => {
 
     return () => {
       document.body.classList.remove('show-native');
+      document.body.style.cursor = '';
       window.removeEventListener('mousemove', onMouseMove);
       document.removeEventListener('mouseover', onMouseOver);
       document.removeEventListener('mouseout', onMouseOut);
@@ -112,7 +114,16 @@ const CustomCursor = () => {
          </div>
          <style>{`
            @keyframes spin { 100% { transform: rotate(360deg); } }
+           body:not(.show-native),
            body:not(.show-native) * { cursor: none !important; }
+           body.show-native,
+           body.show-native * { cursor: default !important; }
+           body.show-native a,
+           body.show-native button,
+           body.show-native select,
+           body.show-native .cursor-pointer { cursor: pointer !important; }
+           body.show-native input,
+           body.show-native textarea { cursor: text !important; caret-color: white; }
          `}</style>
       </div>
     </>
